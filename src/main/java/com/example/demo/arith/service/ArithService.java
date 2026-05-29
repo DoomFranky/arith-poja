@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ArithService {
     public Long add (Long a, Long b) {
-        if (a==null&&b==null){
+        if (a==null||b==null){
             throw new BadRequestException("a and b must be defined");
         }
         if (a<0){
