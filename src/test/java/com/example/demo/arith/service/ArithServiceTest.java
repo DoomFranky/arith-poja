@@ -225,7 +225,7 @@ class ArithServiceTest {
         }
 
         @Test
-        void add_two_big_positive_number() {
+        void multiply_two_big_positive_number() {
             a = 1000000000000L;
             b = 316800L;
 
