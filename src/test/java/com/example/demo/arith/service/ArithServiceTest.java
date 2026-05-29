@@ -164,4 +164,75 @@ class ArithServiceTest {
             assertEquals(BigInteger.valueOf(1000000000000L).negate(),arithService.minus(a,b));
         }
     }
+
+    @Nested
+    class multiply_test {
+
+        @Test
+        void multiply_two_null (){
+            a = null;
+            b = null;
+
+            assertThrows(BadRequestException.class, () -> arithService.multiply(a,b));
+        }
+
+        @Test
+        void multiply_null_to_number (){
+            a = null;
+            b = 2L;
+
+            assertThrows(BadRequestException.class, () -> arithService.multiply(a,b));
+        }
+
+        @Test
+        void multiply_number_to_null (){
+            a = 10L;
+            b = null;
+
+            assertThrows(BadRequestException.class, () -> arithService.multiply(a,b));
+        }
+
+        @Test
+        void multiply_two_negative_number (){
+            a = -10L;
+            b = -2L;
+
+            assertThrows(BadRequestException.class, () -> arithService.multiply(a,b));
+        }
+
+        @Test
+        void multiply_negative_number_to_positive_number (){
+            a = -10L;
+            b = 2L;
+
+            assertThrows(BadRequestException.class, () -> arithService.multiply(a,b));
+        }
+
+        @Test
+        void multiply_positive_number_to_negative_number (){
+            a = 10L;
+            b = -2L;
+
+            assertThrows(BadRequestException.class, () -> arithService.multiply(a,b));
+        }
+
+        @Test
+        void multiply_two_small_positive_number() {
+            a = 10L;
+            b = 2L;
+
+            assertEquals(BigInteger.valueOf(20),arithService.multiply(a,b));
+        }
+
+        @Test
+        void add_two_big_positive_number() {
+            a = 1000000000000L;
+            b = 316800L;
+
+            BigInteger a1 = BigInteger.valueOf(1000000000000L);
+            BigInteger b1 = BigInteger.valueOf(316800L);
+
+            assertEquals(new BigInteger("316800000000000000"),arithService.multiply(a,b));
+        }
+    }
 }
