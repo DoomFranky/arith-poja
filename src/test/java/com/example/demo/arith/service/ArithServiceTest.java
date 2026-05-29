@@ -229,9 +229,6 @@ class ArithServiceTest {
             a = 1000000000000L;
             b = 316800L;
 
-            BigInteger a1 = BigInteger.valueOf(1000000000000L);
-            BigInteger b1 = BigInteger.valueOf(316800L);
-
             assertEquals(new BigInteger("316800000000000000"),arithService.multiply(a,b));
         }
     }
