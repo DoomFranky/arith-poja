@@ -70,6 +70,14 @@ class ArithServiceTest {
 
             assertEquals(12,arithService.add(a,b));
         }
+
+        @Test
+        void add_two_big_positive_number() {
+            a = 1000000000000L;
+            b = 316800L;
+
+            assertEquals(1000000316800L,arithService.add(a,b));
+        }
     }
 
     @Nested
@@ -123,11 +131,35 @@ class ArithServiceTest {
         }
 
         @Test
-        void minus_two_number () {
+        void minus_two_positive_small_number () {
             a = 10L;
             b = 2L;
 
             assertEquals(8,arithService.minus(a,b));
+        }
+
+        @Test
+        void minus_two_small_positive_number_for_negative_result () {
+            a = 10L;
+            b = 20L;
+
+            assertEquals(-10L,arithService.minus(a,b));
+        }
+
+        @Test
+        void add_two_big_positive_number() {
+            a = 1000000000000L;
+            b = 316800L;
+
+            assertEquals(999999683200L,arithService.minus(a,b));
+        }
+
+        @Test
+        void add_two_big_positive_number_for_negative_result() {
+            a = 1000000000000L;
+            b = 2000000000000L;
+
+            assertEquals(-1000000000000L,arithService.minus(a,b));
         }
     }
 }
