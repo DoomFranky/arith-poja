@@ -57,7 +57,7 @@ public class ArithController {
     @GetMapping("/divide")
     public ResponseEntity<?> divideToNumber (@PathVariable Long a, @PathVariable Long b) {
         try {
-            Long number = arithService.divide(a,b);
+            BigDecimal number = arithService.divide(a,b);
             return ResponseEntity.ok().body(number);
         } catch (BadRequestException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

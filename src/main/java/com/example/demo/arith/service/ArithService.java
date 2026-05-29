@@ -3,7 +3,9 @@ package com.example.demo.arith.service;
 import com.example.demo.arith.exception.BadRequestException;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 
 
 @Service
@@ -29,8 +31,14 @@ public class ArithService {
         return a1.multiply(b1);
     }
 
-    public Long divide(Long a, Long b) {
-        return a / b;
+    public BigDecimal divide(Long a, Long b) {
+        checkIfNumberOk(a,b);
+        if (b == 0) {
+            throw new BadRequestException("b must be different of zero");
+        }
+        BigDecimal a1 = BigDecimal.valueOf(a);
+        BigDecimal b1 = BigDecimal.valueOf(b);
+        return a1.divide(b1, 2, RoundingMode.HALF_UP);
     }
 
     private void checkIfNumberOk (Long a, Long b) {

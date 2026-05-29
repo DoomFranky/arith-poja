@@ -4,6 +4,7 @@ import com.example.demo.arith.exception.BadRequestException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -230,6 +231,74 @@ class ArithServiceTest {
             b = 316800L;
 
             assertEquals(new BigInteger("316800000000000000"),arithService.multiply(a,b));
+        }
+    }
+
+    @Nested
+    class divide_test {
+
+        @Test
+        void divide_two_null (){
+            a = null;
+            b = null;
+
+            assertThrows(BadRequestException.class, () -> arithService.divide(a,b));
+        }
+
+        @Test
+        void divide_null_to_number (){
+            a = null;
+            b = 2L;
+
+            assertThrows(BadRequestException.class, () -> arithService.divide(a,b));
+        }
+
+        @Test
+        void divide_number_to_null (){
+            a = 10L;
+            b = null;
+
+            assertThrows(BadRequestException.class, () -> arithService.divide(a,b));
+        }
+
+        @Test
+        void divide_two_negative_number (){
+            a = -10L;
+            b = -2L;
+
+            assertThrows(BadRequestException.class, () -> arithService.divide(a,b));
+        }
+
+        @Test
+        void divide_negative_number_to_positive_number (){
+            a = -10L;
+            b = 2L;
+
+            assertThrows(BadRequestException.class, () -> arithService.divide(a,b));
+        }
+
+        @Test
+        void divide_positive_number_to_negative_number (){
+            a = 10L;
+            b = -2L;
+
+            assertThrows(BadRequestException.class, () -> arithService.divide(a,b));
+        }
+
+        @Test
+        void divide_two_small_positive_number() {
+            a = 10L;
+            b = 2L;
+
+            assertEquals(new BigDecimal("5.00"),arithService.divide(a,b));
+        }
+
+        @Test
+        void divide_two_big_positive_number() {
+            a = 1000000000000L;
+            b = 316800L;
+
+            assertEquals(new BigDecimal("3156565.66"),arithService.divide(a,b));
         }
     }
 }
