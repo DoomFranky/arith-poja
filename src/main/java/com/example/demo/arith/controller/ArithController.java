@@ -18,9 +18,45 @@ public class ArithController {
     }
 
     @GetMapping("/add")
-    public ResponseEntity<?> addToNumber (@PathVariable Long a, @PathVariable Long b) {
+    public ResponseEntity<?> addTwoNumber (@PathVariable Long a, @PathVariable Long b) {
         try {
             Long number = arithService.add(a,b);
+            return ResponseEntity.ok().body(number);
+        } catch (BadRequestException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/minus")
+    public ResponseEntity<?> minusTwoNumber (@PathVariable Long a, @PathVariable Long b) {
+        try {
+            Long number = arithService.minus(a,b);
+            return ResponseEntity.ok().body(number);
+        } catch (BadRequestException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/multiply")
+    public ResponseEntity<?> multiplyTwoNumber (@PathVariable Long a, @PathVariable Long b) {
+        try {
+            Long number = arithService.multiply(a,b);
+            return ResponseEntity.ok().body(number);
+        } catch (BadRequestException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/divide")
+    public ResponseEntity<?> divideToNumber (@PathVariable Long a, @PathVariable Long b) {
+        try {
+            Long number = arithService.divide(a,b);
             return ResponseEntity.ok().body(number);
         } catch (BadRequestException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

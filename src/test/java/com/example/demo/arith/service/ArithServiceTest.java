@@ -72,4 +72,62 @@ class ArithServiceTest {
         }
     }
 
+    @Nested
+    class minus_test {
+        @Test
+        void minus_two_null (){
+            a = null;
+            b = null;
+
+            assertThrows(BadRequestException.class, () -> arithService.minus(a,b));
+        }
+
+        @Test
+        void minus_null_to_number (){
+            a = null;
+            b = 2L;
+
+            assertThrows(BadRequestException.class, () -> arithService.minus(a,b));
+        }
+
+        @Test
+        void minus_number_to_null (){
+            a = 10L;
+            b = null;
+
+            assertThrows(BadRequestException.class, () -> arithService.minus(a,b));
+        }
+
+        @Test
+        void minus_two_negative_number (){
+            a = -10L;
+            b = -2L;
+
+            assertThrows(BadRequestException.class, () -> arithService.minus(a,b));
+        }
+
+        @Test
+        void minus_negative_number_to_positive_number (){
+            a = -10L;
+            b = 2L;
+
+            assertThrows(BadRequestException.class, () -> arithService.minus(a,b));
+        }
+
+        @Test
+        void minus_positive_number_to_negative_number (){
+            a = 10L;
+            b = -2L;
+
+            assertThrows(BadRequestException.class, () -> arithService.minus(a,b));
+        }
+
+        @Test
+        void minus_two_number () {
+            a = 10L;
+            b = 2L;
+
+            assertEquals(8,arithService.minus(a,b));
+        }
+    }
 }
