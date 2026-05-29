@@ -4,6 +4,8 @@ import com.example.demo.arith.exception.BadRequestException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigInteger;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArithServiceTest {
@@ -68,7 +70,7 @@ class ArithServiceTest {
             a = 10L;
             b = 2L;
 
-            assertEquals(12,arithService.add(a,b));
+            assertEquals(BigInteger.valueOf(12),arithService.add(a,b));
         }
 
         @Test
@@ -76,7 +78,7 @@ class ArithServiceTest {
             a = 1000000000000L;
             b = 316800L;
 
-            assertEquals(1000000316800L,arithService.add(a,b));
+            assertEquals(BigInteger.valueOf(1000000316800L),arithService.add(a,b));
         }
     }
 
@@ -135,7 +137,7 @@ class ArithServiceTest {
             a = 10L;
             b = 2L;
 
-            assertEquals(8,arithService.minus(a,b));
+            assertEquals(BigInteger.valueOf(8L),arithService.minus(a,b));
         }
 
         @Test
@@ -143,7 +145,7 @@ class ArithServiceTest {
             a = 10L;
             b = 20L;
 
-            assertEquals(-10L,arithService.minus(a,b));
+            assertEquals(BigInteger.valueOf(10L).negate(),arithService.minus(a,b));
         }
 
         @Test
@@ -151,7 +153,7 @@ class ArithServiceTest {
             a = 1000000000000L;
             b = 316800L;
 
-            assertEquals(999999683200L,arithService.minus(a,b));
+            assertEquals(BigInteger.valueOf(999999683200L),arithService.minus(a,b));
         }
 
         @Test
@@ -159,7 +161,7 @@ class ArithServiceTest {
             a = 1000000000000L;
             b = 2000000000000L;
 
-            assertEquals(-1000000000000L,arithService.minus(a,b));
+            assertEquals(BigInteger.valueOf(1000000000000L).negate(),arithService.minus(a,b));
         }
     }
 }
